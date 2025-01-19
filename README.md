@@ -70,11 +70,15 @@ A simple and secure registration system for Cabal Online private servers.
 │   ├── favicon.png
 │   ├── favicon-light.png
 │   └── logo-light.png
+├── screenshots/         # Sample screenshots
+│   ├── registration-form.png
+│   ├── success-message.png
+│   └── error-message.png
 ├── .env                 # Environment variables (not in git)
 ├── .env.example         # Example environment file
 ├── .gitignore          # Git ignore rules
 ├── process.php         # Registration processing
-├── index.php        # Registration form
+├── index.php           # Registration form
 └── README.md           # This file
 ```
 
@@ -161,6 +165,11 @@ For issues and support:
 2. Search existing GitHub Issues
 3. Create a new Issue if your problem isn't already reported
 4. For security vulnerabilities, please email directly instead of creating a public issue
+
+## Screenshots
+
+### Registration Form
+![Registration Form](screenshot/registration.png)
 
 ---
 Made with ❤️ for the Cabal Online community 
