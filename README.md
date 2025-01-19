@@ -31,7 +31,12 @@ A simple and secure registration system for Cabal Online private servers.
 
 4. Make sure your SQL Server is running and accessible with the provided credentials.
 
-5. Update the following files according to your server:
+5. Execute the account_procedure.sql file:
+   - Before executing, make a backup of your existing `cabal_tool_registerAccount_web` stored procedure
+   - Review and modify the procedure according to your server's needs (e.g., initial cash amount, auth type, etc.)
+   - Execute the SQL script to create/update the stored procedure
+
+6. Update the following files according to your server:
    - `index.php`: 
      - Change title: `<title>Register | YOUR_SERVER_NAME</title>`
      - Update logo: Replace `images/logo-light.png` with your server logo
