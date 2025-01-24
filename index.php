@@ -160,7 +160,13 @@
                 } catch (error) {
                     alertDiv.style.display = 'block';
                     alertDiv.className = 'alert alert-danger';
-                    alertDiv.innerHTML = 'An error occurred. Please try again later.';
+                    let errorMessage = 'An error occurred. Please try again later.';
+                    if (error.details) {
+                        errorMessage += '<br><small class="text-muted">';
+                        errorMessage += `Details: ${error.details.error}`;
+                        errorMessage += '</small>';
+                    }
+                    alertDiv.innerHTML = errorMessage;
                 }
             });
         })();

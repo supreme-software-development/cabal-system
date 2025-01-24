@@ -3,6 +3,13 @@ declare(strict_types=1);
 
 session_start();
 
+// At the top of the file, after session_start()
+ini_set('error_log', __DIR__ . '/logs/error.log');
+// Make sure the logs directory exists and is writable
+if (!file_exists(__DIR__ . '/logs')) {
+    mkdir(__DIR__ . '/logs', 0777, true);
+}
+
 // Load database configuration
 $config = require_once __DIR__ . '/config/database.php';
 
@@ -133,7 +140,13 @@ try {
 
 } catch (Exception $e) {
     $response['message'] = $e->getMessage();
-    error_log("Registration error: " . $e->getMessage());
+    $response['details'] = [
+        'error' => $e->getMessage()
+    ];
+    error_log("Registration error: " . $e->getMessage() . 
+              "\nFile: " . $e->getFile() . 
+              "\nLine: " . $e->getLine() . 
+              "\nTrace: " . $e->getTraceAsString());
 }
 
 // Return JSON response
