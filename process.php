@@ -3,9 +3,7 @@ declare(strict_types=1);
 
 session_start();
 
-// At the top of the file, after session_start()
 ini_set('error_log', __DIR__ . '/logs/error.log');
-// Make sure the logs directory exists and is writable
 if (!file_exists(__DIR__ . '/logs')) {
     mkdir(__DIR__ . '/logs', 0777, true);
 }
@@ -13,7 +11,15 @@ if (!file_exists(__DIR__ . '/logs')) {
 // Load database configuration
 $config = require_once __DIR__ . '/config/database.php';
 
-// Function to sanitize user inputs
+if (!extension_loaded('sqlsrv')) {
+    throw new Exception(
+        "SQL Server Driver for PHP is not installed. Please install the sqlsrv extension:\n" .
+        "For Windows: Enable php_sqlsrv.dll in php.ini\n" .
+        "For Linux: Install via PECL: pecl install sqlsrv\n" .
+        "More info: https://learn.microsoft.com/en-us/sql/connect/php/installation-tutorial-linux-mac"
+    );
+}
+
 function sanitize_input(string $data): string {
     $data = trim($data);
     $data = stripslashes($data);

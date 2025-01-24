@@ -6,7 +6,9 @@ A simple and secure registration system for Cabal Online private servers.
 
 - PHP 7.4 or higher
 - SQL Server
-- SQL Server Driver for PHP
+- SQL Server Driver for PHP (sqlsrv extension)
+  - Windows: Enable php_sqlsrv.dll in php.ini
+  - Linux: Install via PECL (pecl install sqlsrv)
 - Following PHP extensions enabled:
   - sqlsrv
   - openssl
@@ -92,16 +94,27 @@ A simple and secure registration system for Cabal Online private servers.
 
 ## Common Issues
 
-1. **Database Connection Error**
+1. **"Call to undefined function sqlsrv_connect()"**
+   - The SQL Server Driver for PHP is not installed
+   - For Windows:
+     1. Download drivers from Microsoft website
+     2. Copy DLLs to PHP ext directory
+     3. Enable extensions in php.ini
+   - For Linux:
+     1. Install Microsoft ODBC driver
+     2. Install sqlsrv via PECL
+     3. Enable extensions in php.ini
+
+2. **Database Connection Error**
    - Verify SQL Server is running
    - Check credentials in `.env` file
    - Ensure SQL Server Driver for PHP is installed
 
-2. **Missing Images**
+3. **Missing Images**
    - Create `images` directory
    - Add required logo and favicon files
 
-3. **PHP Version Error**
+4. **PHP Version Error**
    - Check PHP version: `php -v`
    - Upgrade PHP if below 7.4
 
